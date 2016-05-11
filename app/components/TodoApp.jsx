@@ -1,5 +1,5 @@
-var React = require('react')
-var TodoList = require('TodoList');
+let React = require('react')
+let TodoList = require('TodoList');
 
 const TodoApp = React.createClass({
   getInitialState() {
