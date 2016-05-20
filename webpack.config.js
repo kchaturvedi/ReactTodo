@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       '$': 'jquery',
-      'jquery': 'jquery'
+      'jQuery': 'jquery'
     })
   ],
   output: {
@@ -24,7 +24,7 @@ module.exports = {
     root: __dirname,
     modulesDirectories: [
       'node_modules',
-      './app/components/',
+      './app/components',
       './app/api'
     ],
     alias: {
@@ -33,7 +33,7 @@ module.exports = {
       reducers: 'app/reducers/reducers.jsx',
       configureStore: 'app/store/configureStore.jsx'
     },
-    extensions: ['','.js', '.jsx']
+    extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [

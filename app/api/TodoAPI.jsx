@@ -1,50 +1,49 @@
-let $ = require('jQuery')
+var $ = require('jquery');
 
 module.exports = {
-  setTodos(todos) {
+  setTodos: function (todos) {
     if ($.isArray(todos)) {
-      localStorage.setItem('todos', JSON.stringify(todos))
-      return todos
+      localStorage.setItem('todos', JSON.stringify(todos));
+      return todos;
     }
   },
-  getTodos() {
-    let stringTodos = localStorage.getItem('todos')
-    let todos = []
-    
+  getTodos: function () {
+    var stringTodos = localStorage.getItem('todos');
+    var todos = [];
+
     try {
-      todos = JSON.parse(stringTodos)
+      todos = JSON.parse(stringTodos);
     } catch (e) {
-      
+
     }
-    
-    return $.isArray(todos) ? todos : []
+
+    return $.isArray(todos) ? todos : [];
   },
-  filterTodos(todos, showCompleted, searchText) {
-    let filteredTodos = todos
-    
+  filterTodos: function (todos, showCompleted, searchText) {
+    var filteredTodos = todos;
+
     // Filter by showCompleted
     filteredTodos = filteredTodos.filter((todo) => {
-      return !todo.completed || showCompleted
-    })
-    
+      return !todo.completed || showCompleted;
+    });
+
     // Filter by searchText
     filteredTodos = filteredTodos.filter((todo) => {
-      let text = todo.text.toLowerCase()
-      return searchText.length === 0 || text.indexOf(searchText) > -1
-    })
-    
+      var text = todo.text.toLowerCase();
+      return searchText.length === 0 || text.indexOf(searchText) > -1;
+    });
+
     // Sort todos with non-completed first
     filteredTodos.sort((a, b) => {
       if (!a.completed && b.completed) {
-        return -1
+        return -1;
       } else if (a.completed && !b.completed) {
-        return 1
+        return 1;
       } else {
-        return 0
+        return 0;
       }
-    })
-    
-    
-    return filteredTodos
+    });
+
+    return filteredTodos;
   }
-}
+};
