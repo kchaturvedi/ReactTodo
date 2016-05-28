@@ -1,4 +1,4 @@
-import firebase from 'firebase/firebase-browser'
+import firebase from 'firebase'
 
 var config = {
   apiKey: "AIzaSyBvKHgEbpI8Iv2nY85Mq0EgpOqcB-sUAVs",
@@ -9,8 +9,13 @@ var config = {
 
 firebase.initializeApp(config);
 
-firebase.database().ref().set({
-  appName: 'Todo App',
+var firebaseRef = firebase.database().ref()
+
+firebaseRef.set({
+  app: {
+    name: 'Todo App',
+    version: '1.0.0'
+  },
   isRunning: true,
   user: {
     name: 'Kartik',
@@ -18,6 +23,23 @@ firebase.database().ref().set({
   }
 })
 
-firebase.database().ref().set({
-  appName: 'Todo Application'
+var todosRef = firebaseRef.child('todos')
+
+todosRef.on('child_added', (snapshot) => {
+  console.log('new todo added', snapshot.key, snapshot.val())
 })
+
+todosRef.push({
+  text: 'Todo 1'
+})
+
+todosRef.push({
+  text: 'Todo 2'
+})
+
+
+
+
+
+
+
