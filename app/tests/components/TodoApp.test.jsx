@@ -6,7 +6,7 @@ let expect = require('expect')
 let $ = require('jQuery')
 
 let configureStore = require('configureStore')
-let TodoApp = require('TodoApp')
+import {TodoApp} from 'TodoApp'
 import TodoList from 'TodoList'
 
 describe('TodoApp', () => {
